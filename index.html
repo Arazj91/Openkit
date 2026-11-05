@@ -179,6 +179,14 @@
       font-weight: 700;
     }
 
+    .sidebar-footer {
+      padding: 0.85rem 1.25rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
     #main {
       flex: 1;
       display: flex;
@@ -474,6 +482,11 @@
       <li><a class="nav-item" data-tool="color"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.93 0 1.5-.67 1.5-1.5 0-.38-.15-.74-.42-1.01-.27-.27-.42-.64-.42-1.02 0-.83.67-1.5 1.5-1.5H16c3.31 0 6-2.69 6-6 0-5.5-4.5-10-10-10z"/></svg>Color Converter</a></li>
       <li><a class="nav-item" data-tool="words"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></svg>Word Counter</a></li>
     </ul>
+
+    <!-- Corner Credit -->
+    <div class="sidebar-footer">
+      Created by Araz Jadidi
+    </div>
   </aside>
 
   <!-- Main Content Shell -->
@@ -1738,6 +1751,42 @@
       }
       return {
         h: Math.round(h * 360),
+        s: Math.round(s * 100),
+        l: Math.round(l * 100)
+      };
+    };
+
+    const updateColors = (hex) => {
+      const rgb = hexToRgb(hex);
+      if (!rgb) return;
+      $('color-picker').value = hex;
+      $('color-hex-input').value = hex;
+      $('color-rgb-val').value = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
+      const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
+      $('color-hsl-val').value = `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`;
+    };
+    $('color-picker').oninput = (e) => updateColors(e.target.value);
+    $('color-hex-input').onchange = (e) => updateColors(e.target.value);
+    updateColors('#6366f1');
+
+    // ==========================================
+    // TOOL 21: Word Counter
+    // ==========================================
+    const updateStats = () => {
+      const t = $('word-counter-input').value;
+      const words = t.trim() ? t.trim().split(/\s+/).length : 0;
+      const chars = t.length;
+      const sentences = t.trim() ? (t.match(/[.!?]+(\s|$)/g) || []).length : 0;
+      $('stat-words').textContent = words;
+      $('stat-chars').textContent = chars;
+      $('stat-sentences').textContent = sentences;
+      $('stat-read-time').textContent = `${Math.ceil(words / 200)}m`;
+    };
+    $('word-counter-input').oninput = updateStats;
+    $('word-counter-input').onpaste = () => setTimeout(updateStats, 10);
+  </script>
+</body>
+</html>
         s: Math.round(s * 100),
         l: Math.round(l * 100)
       };

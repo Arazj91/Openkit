@@ -1805,21 +1805,7 @@
     $('color-hex-input').onchange = (e) => updateColors(e.target.value);
     updateColors('#6366f1');
 
-    // ==========================================
-    // TOOL 21: Word Counter
-    // ==========================================
-    const updateStats = () => {
-      const t = $('word-counter-input').value;
-      const words = t.trim() ? t.trim().split(/\s+/).length : 0;
-      const chars = t.length;
-      const sentences = t.trim() ? (t.match(/[.!?]+(\s|$)/g) || []).length : 0;
-      $('stat-words').textContent = words;
-      $('stat-chars').textContent = chars;
-      $('stat-sentences').textContent = sentences;
-      $('stat-read-time').textContent = `${Math.ceil(words / 200)}m`;
-    };
-    $('word-counter-input').oninput = updateStats;
-    $('word-counter-input').onpaste = () => setTimeout(updateStats, 10);
+  
   </script>
 </body>
 </html>

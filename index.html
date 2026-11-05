@@ -1787,25 +1787,3 @@
   </script>
 </body>
 </html>
-        s: Math.round(s * 100),
-        l: Math.round(l * 100)
-      };
-    };
-
-    const updateColors = (hex) => {
-      const rgb = hexToRgb(hex);
-      if (!rgb) return;
-      $('color-picker').value = hex;
-      $('color-hex-input').value = hex;
-      $('color-rgb-val').value = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
-      const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
-      $('color-hsl-val').value = `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`;
-    };
-    $('color-picker').oninput = (e) => updateColors(e.target.value);
-    $('color-hex-input').onchange = (e) => updateColors(e.target.value);
-    updateColors('#6366f1');
-
-  
-  </script>
-</body>
-</html>

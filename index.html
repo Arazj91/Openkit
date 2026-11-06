@@ -96,6 +96,14 @@
       border-bottom: 1px solid var(--border);
     }
 
+    .brand-logo {
+      width: 30px;
+      height: 30px;
+      object-fit: contain;
+      flex-shrink: 0;
+      display: block;
+    }
+
     .brand h1 {
       font-size: 1.25rem;
       font-weight: 700;
@@ -432,7 +440,7 @@
   <aside id="sidebar">
     <div class="brand">
       <h1>
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="m9 9 6 6m0-6-6 6"/></svg>
+        <img src="./logo.png" alt="OpenKit logo" class="brand-logo">
         OpenKit
       </h1>
       <button id="theme-toggle" class="btn-icon" title="Toggle Theme">
@@ -485,7 +493,7 @@
 
     <!-- Corner Credit -->
     <div class="sidebar-footer">
-     Built with 🪐 by Araz Jadidi
+     Built with 🚀 by Araz Jadidi
     </div>
   </aside>
 
